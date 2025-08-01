@@ -1,5 +1,5 @@
 const fs = require('fs');
-const source = fs.readFileSync("./math.wasm");
+const source = fs.readFileSync("./chip8.wasm");
 const typedArray = new Uint8Array(source);
 
 WebAssembly.instantiate(typedArray, {
