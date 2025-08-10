@@ -1,5 +1,5 @@
 export interface Chip8Wasm {
-    add(a: number, b: number): void
+    disassemble(bytes: UInt8Array): string
 }
 
 export function init(): Promise<Chip8Wasm>

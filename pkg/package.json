@@ -19,7 +19,7 @@
   "homepage": "https://github.com/deanrumsby/libchip8#readme",
   "files": [
     "index.js",
-    "chip8.wasm",
+    "bin/chip8.wasm",
     "index.d.ts"
   ]
 }
