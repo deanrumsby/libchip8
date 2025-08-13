@@ -57,6 +57,18 @@ test "0E00 correctly decodes" {
     try testing.expectEqual(0x00e0, inst.nnn());
 }
 
+test "1C4B correctly decodes" {
+    const word: u16 = 0x1c4b;
+    const inst = try Instruction.from_u16(word);
+
+    try testing.expectEqual(Opcode.op_1nnn, inst.opcode);
+    try testing.expectEqual(0x1c4b, inst.value);
+    try testing.expectEqual(0x0c, inst.x());
+    try testing.expectEqual(0x04, inst.y());
+    try testing.expectEqual(0x4b, inst.nn());
+    try testing.expectEqual(0x0c4b, inst.nnn());
+}
+
 test "7A72 correctly decodes" {
     const word: u16 = 0x7a72;
     const inst = try Instruction.from_u16(word);
