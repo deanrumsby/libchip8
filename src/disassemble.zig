@@ -13,7 +13,7 @@ pub fn disassemble(allocator: std.mem.Allocator, source: []const u8) ![]u8 {
 
         const mnemonic = switch (opcode) {
             0x00E0 => "CLS",
-            else => "ERR",
+            else => "UNKNOWN",
         };
 
         try list.appendSlice(mnemonic);

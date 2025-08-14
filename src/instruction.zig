@@ -69,6 +69,18 @@ test "1C4B correctly decodes" {
     try testing.expectEqual(0x0c4b, inst.nnn());
 }
 
+test "602F correctly decodes" {
+    const word: u16 = 0x602f;
+    const inst = try Instruction.from_u16(word);
+
+    try testing.expectEqual(Opcode.op_6xnn, inst.opcode);
+    try testing.expectEqual(0x602f, inst.value);
+    try testing.expectEqual(0x00, inst.x());
+    try testing.expectEqual(0x02, inst.y());
+    try testing.expectEqual(0x2f, inst.nn());
+    try testing.expectEqual(0x002f, inst.nnn());
+}
+
 test "7A72 correctly decodes" {
     const word: u16 = 0x7a72;
     const inst = try Instruction.from_u16(word);
@@ -79,4 +91,28 @@ test "7A72 correctly decodes" {
     try testing.expectEqual(0x07, inst.y());
     try testing.expectEqual(0x72, inst.nn());
     try testing.expectEqual(0x0a72, inst.nnn());
+}
+
+test "A123 correctly decodes" {
+    const word: u16 = 0xa123;
+    const inst = try Instruction.from_u16(word);
+
+    try testing.expectEqual(Opcode.op_annn, inst.opcode);
+    try testing.expectEqual(0xa123, inst.value);
+    try testing.expectEqual(0x01, inst.x());
+    try testing.expectEqual(0x02, inst.y());
+    try testing.expectEqual(0x23, inst.nn());
+    try testing.expectEqual(0x0123, inst.nnn());
+}
+
+test "DAB1 correctly decodes" {
+    const word: u16 = 0xdab1;
+    const inst = try Instruction.from_u16(word);
+
+    try testing.expectEqual(Opcode.op_dxyn, inst.opcode);
+    try testing.expectEqual(0xdab1, inst.value);
+    try testing.expectEqual(0x0a, inst.x());
+    try testing.expectEqual(0x0b, inst.y());
+    try testing.expectEqual(0xb1, inst.nn());
+    try testing.expectEqual(0x0ab1, inst.nnn());
 }
