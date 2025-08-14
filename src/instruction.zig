@@ -36,6 +36,10 @@ pub const Instruction = struct {
         return @intCast((self.value & 0x0f0) >> 4);
     }
 
+    pub fn n(self: Instruction) u8 {
+        return @intCast(self.value & 0x000f);
+    }
+
     pub fn nn(self: Instruction) u8 {
         return @intCast(self.value & 0x00ff);
     }
@@ -53,6 +57,7 @@ test "0E00 correctly decodes" {
     try testing.expectEqual(0x00e0, inst.value);
     try testing.expectEqual(0x00, inst.x());
     try testing.expectEqual(0x0e, inst.y());
+    try testing.expectEqual(0x00, inst.n());
     try testing.expectEqual(0xe0, inst.nn());
     try testing.expectEqual(0x00e0, inst.nnn());
 }
@@ -65,6 +70,7 @@ test "1C4B correctly decodes" {
     try testing.expectEqual(0x1c4b, inst.value);
     try testing.expectEqual(0x0c, inst.x());
     try testing.expectEqual(0x04, inst.y());
+    try testing.expectEqual(0x0b, inst.n());
     try testing.expectEqual(0x4b, inst.nn());
     try testing.expectEqual(0x0c4b, inst.nnn());
 }
@@ -77,6 +83,7 @@ test "602F correctly decodes" {
     try testing.expectEqual(0x602f, inst.value);
     try testing.expectEqual(0x00, inst.x());
     try testing.expectEqual(0x02, inst.y());
+    try testing.expectEqual(0x0f, inst.n());
     try testing.expectEqual(0x2f, inst.nn());
     try testing.expectEqual(0x002f, inst.nnn());
 }
@@ -89,6 +96,7 @@ test "7A72 correctly decodes" {
     try testing.expectEqual(0x7a72, inst.value);
     try testing.expectEqual(0x0a, inst.x());
     try testing.expectEqual(0x07, inst.y());
+    try testing.expectEqual(0x02, inst.n());
     try testing.expectEqual(0x72, inst.nn());
     try testing.expectEqual(0x0a72, inst.nnn());
 }
@@ -101,6 +109,7 @@ test "A123 correctly decodes" {
     try testing.expectEqual(0xa123, inst.value);
     try testing.expectEqual(0x01, inst.x());
     try testing.expectEqual(0x02, inst.y());
+    try testing.expectEqual(0x03, inst.n());
     try testing.expectEqual(0x23, inst.nn());
     try testing.expectEqual(0x0123, inst.nnn());
 }
@@ -113,6 +122,7 @@ test "DAB1 correctly decodes" {
     try testing.expectEqual(0xdab1, inst.value);
     try testing.expectEqual(0x0a, inst.x());
     try testing.expectEqual(0x0b, inst.y());
+    try testing.expectEqual(0x01, inst.n());
     try testing.expectEqual(0xb1, inst.nn());
     try testing.expectEqual(0x0ab1, inst.nnn());
 }
